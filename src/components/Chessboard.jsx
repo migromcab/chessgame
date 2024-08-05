@@ -11,19 +11,9 @@ export default function Chessboard() {
     for (let i = 0; i < AxisX.length; i++) {
       const number = i + j + 2;
       if (number % 2 === 0) {
-        board.push(
-          <div className="white-tile">
-            {AxisX[i]}
-            {AxisY[j]}
-          </div>
-        );
+        board.push(<div className="white-tile"></div>);
       } else {
-        board.push(
-          <div className="black-tile">
-            {AxisX[i]}
-            {AxisY[j]}
-          </div>
-        );
+        board.push(<div className="black-tile"></div>);
       }
     }
   }
