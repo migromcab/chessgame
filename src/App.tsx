@@ -1,13 +1,15 @@
+import { useState } from "react";
 import React from "react";
 import "./App.css";
 import Chessboard from "./components/Chessboard";
-import "./components/ChessboardStyle.css";
 
 function App() {
+  const [count, setCount] = useState(0);
+
   return (
-    <div>
+    <>
       <Chessboard />
-    </div>
+    </>
   );
 }
 
