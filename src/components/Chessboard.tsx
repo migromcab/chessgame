@@ -1,20 +1,18 @@
 import React from "react";
 import "./ChessboardStyle.css";
+import Tile from "./tile/tile";
 
 const AxisY = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const AxisX = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
-export default function Chessboard() {
+function Chessboard() {
   let board = [];
 
   for (let j = AxisY.length - 1; j >= 0; j--) {
     for (let i = 0; i < AxisX.length; i++) {
       const number = i + j + 2;
-      if (number % 2 === 0) {
-        board.push(<div className="white-tile"></div>);
-      } else {
-        board.push(<div className="black-tile"></div>);
-      }
+
+      board.push(<Tile number={number} />);
     }
   }
 
@@ -24,3 +22,5 @@ export default function Chessboard() {
     </div>
   );
 }
+
+export default Chessboard;

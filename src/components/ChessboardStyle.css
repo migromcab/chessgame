@@ -25,11 +25,3 @@ body {
   max-width: 50rem;
   max-height: 50rem;
 }
-
-.black-tile {
-  background-color: black;
-}
-
-.white-tile {
-  background-color: white;
-}
