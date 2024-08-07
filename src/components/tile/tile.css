@@ -5,3 +5,18 @@
 .white-tile {
   background-color: white;
 }
+
+.tile svg {
+  height: 2 rem;
+  width: 2 rem;
+}
+
+.tile {
+  place-content: center;
+}
+
+.tile img {
+  width: 2rem;
+  height: 2rem;
+  color: blueviolet;
+}

@@ -14,20 +14,22 @@ import { FaRegChessPawn } from "react-icons/fa6";
 import { FaRegChessQueen } from "react-icons/fa6";
 import { FaRegChessRook } from "react-icons/fa6";
 import "./tile.css";
+import "../ChessboardStyle.css";
 
 export interface Props {
+  image?: string;
   number: number;
 }
 
-function Tile({ number }: Props) {
+function Tile({ number, image }: Props) {
   if (number % 2 === 0) {
+    return <div className="tile black-tile"></div>;
+  } else {
     return (
-      <div className="tile black-tile">
-        <FaRegChessPawn />
+      <div className="tile white-tile">
+        <img src={image} />
       </div>
     );
-  } else {
-    return <div className="tile white-tile"></div>;
   }
 }
 

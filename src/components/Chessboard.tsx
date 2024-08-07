@@ -12,7 +12,7 @@ function Chessboard() {
     for (let i = 0; i < AxisX.length; i++) {
       const number = i + j + 2;
 
-      board.push(<Tile number={number} />);
+      board.push(<Tile image="src/chessicons/peón_n.png" number={number} />);
     }
   }
 
