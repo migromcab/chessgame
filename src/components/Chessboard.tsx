@@ -13,11 +13,21 @@ interface Piece {
 
 const pieces: Piece[] = [];
 
-pieces.push({
-  image: "chessgame/src/chessicons/peón_b.png",
-  AxisX: 0,
-  AxisY: 1,
-});
+for (let i = 0; i < 8; i++) {
+  pieces.push({
+    image: "src/chessicons/peon_b.png",
+    AxisX: i,
+    AxisY: 6,
+  });
+}
+
+for (let i = 0; i < 8; i++) {
+  pieces.push({
+    image: "src/chessicons/peon_n.png",
+    AxisX: i,
+    AxisY: 1,
+  });
+}
 
 function Chessboard() {
   let board = [];

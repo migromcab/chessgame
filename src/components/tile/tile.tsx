@@ -29,7 +29,12 @@ function Tile({ number, image }: Props) {
       </div>
     );
   } else {
-    return <div className="tile white-tile"></div>;
+    return (
+      <div className="tile white-tile">
+        {" "}
+        <img src={image} />
+      </div>
+    );
   }
 }
 
