@@ -29,6 +29,53 @@ for (let i = 0; i < 8; i++) {
   });
 }
 
+for (let p = 0; p < 2; p++) {
+  const type = p === 0 ? "b" : "n";
+  const y = p === 0 ? 7 : 0;
+
+  pieces.push({
+    image: `src/chessicons/torre_${type}.png`,
+    AxisX: 0,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/torre_${type}.png`,
+    AxisX: 7,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/caballo_${type}.png`,
+    AxisX: 1,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/caballo_${type}.png`,
+    AxisX: 6,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/alfil_${type}.png`,
+    AxisX: 2,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/alfil_${type}.png`,
+    AxisX: 5,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/rey_${type}.png`,
+    AxisX: 4,
+    AxisY: y,
+  });
+  pieces.push({
+    image: `src/chessicons/reina_${type}.png`,
+    AxisX: 3,
+    AxisY: y,
+  });
+}
+
+/*
 //TORRES//
 pieces.push({
   image: "src/chessicons/torre_b.png",
@@ -115,6 +162,7 @@ pieces.push({
   AxisX: 3,
   AxisY: 0,
 });
+*/
 
 function Chessboard() {
   let board = [];
