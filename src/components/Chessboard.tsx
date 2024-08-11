@@ -29,6 +29,93 @@ for (let i = 0; i < 8; i++) {
   });
 }
 
+//TORRES//
+pieces.push({
+  image: "src/chessicons/torre_b.png",
+  AxisX: 0,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/torre_b.png",
+  AxisX: 7,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/torre_n.png",
+  AxisX: 0,
+  AxisY: 0,
+});
+pieces.push({
+  image: "src/chessicons/torre_n.png",
+  AxisX: 7,
+  AxisY: 0,
+});
+
+//CABALLOS//
+pieces.push({
+  image: "src/chessicons/caballo_b.png",
+  AxisX: 1,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/caballo_b.png",
+  AxisX: 6,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/caballo_n.png",
+  AxisX: 1,
+  AxisY: 0,
+});
+pieces.push({
+  image: "src/chessicons/caballo_n.png",
+  AxisX: 6,
+  AxisY: 0,
+});
+//ALFILES//
+pieces.push({
+  image: "src/chessicons/alfil_b.png",
+  AxisX: 2,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/alfil_b.png",
+  AxisX: 5,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/alfil_n.png",
+  AxisX: 2,
+  AxisY: 0,
+});
+pieces.push({
+  image: "src/chessicons/alfil_n.png",
+  AxisX: 5,
+  AxisY: 0,
+});
+//REYES//
+pieces.push({
+  image: "src/chessicons/rey_b.png",
+  AxisX: 4,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/rey_n.png",
+  AxisX: 4,
+  AxisY: 0,
+});
+//REINAS//
+pieces.push({
+  image: "src/chessicons/reina_b.png",
+  AxisX: 3,
+  AxisY: 7,
+});
+pieces.push({
+  image: "src/chessicons/reina_n.png",
+  AxisX: 3,
+  AxisY: 0,
+});
+
 function Chessboard() {
   let board = [];
 
