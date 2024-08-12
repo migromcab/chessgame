@@ -178,7 +178,7 @@ function Chessboard() {
         }
       });
 
-      board.push(<Tile image={image} number={number} />);
+      board.push(<Tile key={`${i},${j}`} image={image} number={number} />);
     }
   }
 
