@@ -15,9 +15,10 @@
   place-content: center;
 }
 
-.tile img {
-  width: 2rem;
-  height: 2rem;
-  color: blueviolet;
-  border: none;
+.tile .chess-piece {
+  width: 6.25rem;
+  height: 6.25rem;
+  background-repeat: no-repeat;
+  background-size: 5rem;
+  background-position: center;
 }
