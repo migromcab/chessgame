@@ -75,94 +75,36 @@ for (let p = 0; p < 2; p++) {
   });
 }
 
-/*
-//TORRES//
-pieces.push({
-  image: "src/chessicons/torre_b.png",
-  AxisX: 0,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/torre_b.png",
-  AxisX: 7,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/torre_n.png",
-  AxisX: 0,
-  AxisY: 0,
-});
-pieces.push({
-  image: "src/chessicons/torre_n.png",
-  AxisX: 7,
-  AxisY: 0,
-});
+let activePiece: HTMLElement | null = null;
 
-//CABALLOS//
-pieces.push({
-  image: "src/chessicons/caballo_b.png",
-  AxisX: 1,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/caballo_b.png",
-  AxisX: 6,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/caballo_n.png",
-  AxisX: 1,
-  AxisY: 0,
-});
-pieces.push({
-  image: "src/chessicons/caballo_n.png",
-  AxisX: 6,
-  AxisY: 0,
-});
-//ALFILES//
-pieces.push({
-  image: "src/chessicons/alfil_b.png",
-  AxisX: 2,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/alfil_b.png",
-  AxisX: 5,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/alfil_n.png",
-  AxisX: 2,
-  AxisY: 0,
-});
-pieces.push({
-  image: "src/chessicons/alfil_n.png",
-  AxisX: 5,
-  AxisY: 0,
-});
-//REYES//
-pieces.push({
-  image: "src/chessicons/rey_b.png",
-  AxisX: 4,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/rey_n.png",
-  AxisX: 4,
-  AxisY: 0,
-});
-//REINAS//
-pieces.push({
-  image: "src/chessicons/reina_b.png",
-  AxisX: 3,
-  AxisY: 7,
-});
-pieces.push({
-  image: "src/chessicons/reina_n.png",
-  AxisX: 3,
-  AxisY: 0,
-});
-*/
+function grabPiece(e: React.MouseEvent) {
+  const element = e.target as HTMLElement;
+  if (element.classList.contains("chess-piece")) {
+    console.log(element);
+    const x = e.clientX - 50;
+    const y = e.clientY - 50;
+    element.style.position = "absolute";
+    element.style.left = `${x}px`;
+    element.style.top = `${y}px`;
+  }
+  activePiece = element;
+}
+
+function movePiece(e: React.MouseEvent) {
+  if (activePiece) {
+    const x = e.clientX - 50;
+    const y = e.clientY - 50;
+    activePiece.style.position = "absolute";
+    activePiece.style.left = `${x}px`;
+    activePiece.style.top = `${y}px`;
+  }
+}
+
+function dropPiece(e: React.MouseEvent) {
+  if (activePiece) {
+    activePiece = null;
+  }
+}
 
 function Chessboard() {
   let board = [];
@@ -184,7 +126,14 @@ function Chessboard() {
 
   return (
     <div className="chessboard">
-      <div className="board">{board}</div>
+      <div
+        onMouseMove={(e) => movePiece(e)}
+        onMouseDown={(e) => grabPiece(e)}
+        onMouseUp={(e) => dropPiece(e)}
+        className="board"
+      >
+        {board}
+      </div>
     </div>
   );
 }

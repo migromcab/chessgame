@@ -22,3 +22,11 @@
   background-size: 5rem;
   background-position: center;
 }
+
+.tile .chess-piece:hover {
+  cursor: grab;
+}
+
+.tile .chess-piece:active {
+  cursor: grabbing;
+}
