@@ -1,6 +1,7 @@
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import "./ChessboardStyle.css";
 import Tile from "./tile/tile";
+import { Value } from "sass";
 
 const AxisY = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const AxisX = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -13,8 +14,9 @@ interface Piece {
 
 const pieces: Piece[] = [];
 
+const firstBoardState: Piece[] = [];
 for (let i = 0; i < 8; i++) {
-  pieces.push({
+  firstBoardState.push({
     image: "src/chessicons/peon_b.png",
     AxisX: i,
     AxisY: 6,
@@ -22,7 +24,7 @@ for (let i = 0; i < 8; i++) {
 }
 
 for (let i = 0; i < 8; i++) {
-  pieces.push({
+  firstBoardState.push({
     image: "src/chessicons/peon_n.png",
     AxisX: i,
     AxisY: 1,
@@ -33,42 +35,42 @@ for (let p = 0; p < 2; p++) {
   const type = p === 0 ? "b" : "n";
   const y = p === 0 ? 7 : 0;
 
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 0,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 7,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 1,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 6,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 2,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 5,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/rey_${type}.png`,
     AxisX: 4,
     AxisY: y,
   });
-  pieces.push({
+  firstBoardState.push({
     image: `src/chessicons/reina_${type}.png`,
     AxisX: 3,
     AxisY: y,
@@ -76,6 +78,7 @@ for (let p = 0; p < 2; p++) {
 }
 
 function Chessboard() {
+  const [pieces, setPieces] = useState<Piece[]>(firstBoardState);
   const chessboardRef = useRef<HTMLElement>(null);
   let activePiece: HTMLElement | null = null;
 
@@ -124,7 +127,21 @@ function Chessboard() {
   }
 
   function dropPiece(e: React.MouseEvent) {
-    if (activePiece) {
+    const chessboard = chessboardRef.current;
+    if (activePiece && chessboard) {
+      const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+      const y = Math.floor((e.clientY - chessboard.offsetTop) / 100);
+
+      setPieces((value) => {
+        const pieces = value.map((p) => {
+          if (p.x === 1 && p.y === 0) {
+            p.x = 5;
+            p.y = 5;
+          }
+          return p;
+        });
+        return pieces;
+      });
       activePiece = null;
     }
   }
