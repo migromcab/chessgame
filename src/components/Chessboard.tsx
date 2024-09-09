@@ -151,9 +151,9 @@ function Chessboard() {
       console.log(x, y);
       setPieces((value) => {
         const pieces = value.map((p) => {
-          if (p.x === gridX && p.y === gridY) {
-            p.x = x;
-            p.y = y;
+          if (p.AxisX === gridX && p.AxisY === gridY) {
+            p.AxisX = x;
+            p.AxisY = y;
           }
           return p;
         });
