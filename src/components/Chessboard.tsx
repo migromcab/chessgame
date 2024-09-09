@@ -79,8 +79,8 @@ for (let p = 0; p < 2; p++) {
 
 function Chessboard() {
   const [activePiece, setactivePiece] = useState<HTMLElement | null>(null);
-  const [originX, setoriginX] = useState(0);
-  const [originY, setoriginY] = useState(0);
+  const [gridX, setGridX] = useState(0);
+  const [gridY, setGridY] = useState(0);
   const [pieces, setPieces] = useState<Piece[]>(firstBoardState);
   const chessboardRef = useRef<HTMLElement>(null);
 
@@ -89,10 +89,12 @@ function Chessboard() {
     const chessboard = chessboardRef.current;
 
     if (element.classList.contains("chess-piece") && chessboard) {
-      setoriginX(Math.floor((e.clientX - chessboard.offsetLeft) / 100));
-      setoriginY(
-        Math.abs(Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100))
+      const gridX = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+      const gridY = Math.abs(
+        Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)
       );
+      setGridX(gridX);
+      setGridY(gridY);
       console.log(element);
       const x = e.clientX - 50;
       const y = e.clientY - 50;
@@ -137,14 +139,19 @@ function Chessboard() {
   function dropPiece(e: React.MouseEvent) {
     const chessboard = chessboardRef.current;
     if (activePiece && chessboard) {
-      const x = Math.floor((e.clientX - chessboard.offsetLeft) / 100);
+      const tileSize = 100;
+      const x = Math.floor((e.clientX - chessboard.offsetLeft) / tileSize);
       const y = Math.abs(
-        Math.ceil((e.clientY - chessboard.offsetTop - 800) / 100)
+        Math.ceil((e.clientY - chessboard.offsetTop - 800) / tileSize)
       );
+
+      const centeredX = x * tileSize + tileSize / 2;
+      const centeredY = y * tileSize + tileSize / 2;
+
       console.log(x, y);
       setPieces((value) => {
         const pieces = value.map((p) => {
-          if (p.x === originX && p.y === originY) {
+          if (p.x === gridX && p.y === gridY) {
             p.x = x;
             p.y = y;
           }
