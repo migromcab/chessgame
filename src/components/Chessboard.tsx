@@ -11,6 +11,16 @@ interface Piece {
   image: string;
   AxisX: number;
   AxisY: number;
+  type: PieceType;
+}
+
+export enum PieceType {
+  PEON,
+  ALFIL,
+  CABALLO,
+  TORRE,
+  REY,
+  REINA,
 }
 
 const pieces: Piece[] = [];
@@ -147,11 +157,11 @@ function Chessboard() {
         Math.ceil((e.clientY - chessboard.offsetTop - 800) / tileSize)
       );
 
-      referee.validMove();
-
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {
+            referee.validMove(gridX, gridY, x, y, type);
+
             p.AxisX = x;
             p.AxisY = y;
           }
