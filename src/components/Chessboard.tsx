@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useRef, useState } from "react";
 import "./ChessboardStyle.css";
 import Tile from "./tile/tile";
 import { Value } from "sass";
+import Referee from "../referee/referee";
 
 const AxisY = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const AxisX = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -83,6 +84,7 @@ function Chessboard() {
   const [gridY, setGridY] = useState(0);
   const [pieces, setPieces] = useState<Piece[]>(firstBoardState);
   const chessboardRef = useRef<HTMLElement>(null);
+  const referee = new Referee();
 
   function grabPiece(e: React.MouseEvent) {
     const element = e.target as HTMLElement;
@@ -145,10 +147,8 @@ function Chessboard() {
         Math.ceil((e.clientY - chessboard.offsetTop - 800) / tileSize)
       );
 
-      const centeredX = x * tileSize + tileSize / 2;
-      const centeredY = y * tileSize + tileSize / 2;
+      referee.validMove();
 
-      console.log(x, y);
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {
