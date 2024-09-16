@@ -31,6 +31,7 @@ for (let i = 0; i < 8; i++) {
     image: "src/chessicons/peon_b.png",
     AxisX: i,
     AxisY: 6,
+    type: PieceType.PEON,
   });
 }
 
@@ -39,6 +40,7 @@ for (let i = 0; i < 8; i++) {
     image: "src/chessicons/peon_n.png",
     AxisX: i,
     AxisY: 1,
+    type: PieceType.PEON,
   });
 }
 
@@ -50,41 +52,49 @@ for (let p = 0; p < 2; p++) {
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 0,
     AxisY: y,
+    type: PieceType.TORRE,
   });
   firstBoardState.push({
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 7,
     AxisY: y,
+    type: PieceType.TORRE,
   });
   firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 1,
     AxisY: y,
+    type: PieceType.CABALLO,
   });
   firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 6,
     AxisY: y,
+    type: PieceType.CABALLO,
   });
   firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 2,
     AxisY: y,
+    type: PieceType.ALFIL,
   });
   firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 5,
     AxisY: y,
+    type: PieceType.ALFIL,
   });
   firstBoardState.push({
     image: `src/chessicons/rey_${type}.png`,
     AxisX: 4,
     AxisY: y,
+    type: PieceType.REY,
   });
   firstBoardState.push({
     image: `src/chessicons/reina_${type}.png`,
     AxisX: 3,
     AxisY: y,
+    type: PieceType.REINA,
   });
 }
 
@@ -160,7 +170,7 @@ function Chessboard() {
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {
-            referee.validMove(gridX, gridY, x, y, type);
+            referee.validMove(gridX, gridY, x, y, p.type);
 
             p.AxisX = x;
             p.AxisY = y;
