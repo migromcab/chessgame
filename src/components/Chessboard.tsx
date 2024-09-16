@@ -12,6 +12,7 @@ interface Piece {
   AxisX: number;
   AxisY: number;
   type: PieceType;
+  team: TeamType;
 }
 
 export enum PieceType {
@@ -23,6 +24,11 @@ export enum PieceType {
   REINA,
 }
 
+export enum TeamType {
+  OPPONENT,
+  OUR,
+}
+
 const pieces: Piece[] = [];
 
 const firstBoardState: Piece[] = [];
@@ -32,6 +38,7 @@ for (let i = 0; i < 8; i++) {
     AxisX: i,
     AxisY: 6,
     type: PieceType.PEON,
+    team: TeamType.OUR,
   });
 }
 
@@ -41,60 +48,70 @@ for (let i = 0; i < 8; i++) {
     AxisX: i,
     AxisY: 1,
     type: PieceType.PEON,
+    team: TeamType.OPPONENT,
   });
 }
 
 for (let p = 0; p < 2; p++) {
-  const type = p === 0 ? "b" : "n";
-  const y = p === 0 ? 7 : 0;
+  const teamtype = p === 0 ? TeamType.OUR : TeamType.OPPONENT;
+  const type = teamtype === TeamType.OUR ? "b" : "n";
+  const y = teamtype === TeamType.OUR ? 7 : 0;
 
   firstBoardState.push({
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 0,
     AxisY: y,
     type: PieceType.TORRE,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/torre_${type}.png`,
     AxisX: 7,
     AxisY: y,
     type: PieceType.TORRE,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 1,
     AxisY: y,
     type: PieceType.CABALLO,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/caballo_${type}.png`,
     AxisX: 6,
     AxisY: y,
     type: PieceType.CABALLO,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 2,
     AxisY: y,
     type: PieceType.ALFIL,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/alfil_${type}.png`,
     AxisX: 5,
     AxisY: y,
     type: PieceType.ALFIL,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/rey_${type}.png`,
     AxisX: 4,
     AxisY: y,
     type: PieceType.REY,
+    team: teamtype,
   });
   firstBoardState.push({
     image: `src/chessicons/reina_${type}.png`,
     AxisX: 3,
     AxisY: y,
     type: PieceType.REINA,
+    team: teamtype,
   });
 }
 
@@ -170,7 +187,7 @@ function Chessboard() {
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {
-            referee.validMove(gridX, gridY, x, y, p.type);
+            referee.validMove(gridX, gridY, x, y, p.type, p.team);
 
             p.AxisX = x;
             p.AxisY = y;
