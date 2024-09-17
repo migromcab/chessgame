@@ -187,10 +187,23 @@ function Chessboard() {
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {
-            referee.validMove(gridX, gridY, x, y, p.type, p.team);
+            const validmove = referee.validMove(
+              gridX,
+              gridY,
+              x,
+              y,
+              p.type,
+              p.team
+            );
 
-            p.AxisX = x;
-            p.AxisY = y;
+            if (validmove) {
+              p.AxisX = x;
+              p.AxisY = y;
+            } else {
+              activePiece.style.position = "relative";
+              activePiece.style.removeProperty("top");
+              activePiece.style.removeProperty("left");
+            }
           }
           return p;
         });

@@ -19,7 +19,10 @@ export default class Referee {
       if (team === TeamType.OUR) {
         if (py === 6) {
           if (px === x && (py - y === 1 || py - y === 2)) {
-            console.log("valid move");
+            return true;
+          }
+        } else {
+          if (px === x && py - y === 1) {
             return true;
           }
         }
