@@ -28,6 +28,20 @@ export default class Referee {
         }
       }
     }
+    if (type === PieceType.PEON) {
+      if (team === TeamType.OPPONENT) {
+        if (py === 1) {
+          if (px === x && (y - py === 1 || y - py === 2)) {
+            return true;
+          }
+        } else {
+          if (px === x && y - py === 1) {
+            return true;
+          }
+        }
+      }
+    }
+
     return false;
   }
 }
