@@ -7,7 +7,7 @@ import Referee from "../referee/referee";
 const AxisY = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const AxisX = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
-interface Piece {
+export interface Piece {
   image: string;
   AxisX: number;
   AxisY: number;
@@ -193,7 +193,8 @@ function Chessboard() {
               x,
               y,
               p.type,
-              p.team
+              p.team,
+              value
             );
 
             if (validmove) {
