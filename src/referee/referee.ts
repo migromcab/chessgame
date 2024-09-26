@@ -26,8 +26,15 @@ export default class Referee {
     if (type === PieceType.PEON) {
       if (team === TeamType.OUR) {
         if (py === 6) {
-          if (px === x && (py - y === 1 || py - y === 2)) {
+          if (px === x && py - y === 1) {
             if (!this.tileoccupied(x, y, boardState)) {
+              return true;
+            }
+          } else if (px === x && py - y === 2) {
+            if (
+              !this.tileoccupied(x, y, boardState) &&
+              !this.tileoccupied(x, y + 1, boardState)
+            ) {
               return true;
             }
           }
@@ -41,8 +48,15 @@ export default class Referee {
     if (type === PieceType.PEON) {
       if (team === TeamType.OPPONENT) {
         if (py === 1) {
-          if (px === x && (y - py === 1 || y - py === 2)) {
+          if (px === x && y - py === 1) {
             if (!this.tileoccupied(x, y, boardState)) {
+              return true;
+            }
+          } else if (px === x && y - py === 2) {
+            if (
+              !this.tileoccupied(x, y, boardState) &&
+              !this.tileoccupied(x, y - 1, boardState)
+            ) {
               return true;
             }
           }
