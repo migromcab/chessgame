@@ -8,6 +8,19 @@ export default class Referee {
       return false;
     }
   }
+
+  invadedtile(
+    x: number,
+    y: number,
+    boardState: Piece[],
+    team: TeamType
+  ): boolean {
+    const piece = boardState.find(
+      (p) => p.AxisX === x && p.AxisY === y && p.team !== team
+    );
+    return true;
+  }
+
   validMove(
     px: number,
     py: number,
@@ -43,6 +56,15 @@ export default class Referee {
         if (!this.tileoccupied(x, y, boardState)) {
           return true;
         }
+      }
+      //ATAQUE A ESQUINA SUPERIOR IZQUIERDA
+      else if (x - px === -1 && y - py === pawndirection) {
+        console.log("ATTACK 1!!!");
+        if (this.tileoccupied(x, y, boardState, team)) {
+          console.log("the enemy is invading, ATTACK!!");
+        }
+      } else if (x - px === 1 && y - py === pawndirection) {
+        console.log("ATTACK 2!!!");
       }
     }
 
