@@ -22,48 +22,26 @@ export default class Referee {
     console.log(`Current  location:(${x},${y})`);
     console.log(` Type:(${type})`);
     console.log(` Team:(${team})`);
-
     if (type === PieceType.PEON) {
-      if (team === TeamType.OUR) {
-        if (py === 6) {
-          if (px === x && py - y === 1) {
-            if (!this.tileoccupied(x, y, boardState)) {
-              return true;
-            }
-          } else if (px === x && py - y === 2) {
-            if (
-              !this.tileoccupied(x, y, boardState) &&
-              !this.tileoccupied(x, y + 1, boardState)
-            ) {
-              return true;
-            }
-          }
-        } else {
-          if (px === x && py - y === 1) {
+      const specialrow = team === TeamType.OUR ? 6 : 1;
+      const pawndirection = team === TeamType.OUR ? -1 : 1;
+
+      // Movimiento inicial del peón desde la fila especial
+      if (py === specialrow) {
+        if (px === x && y - py === 2 * pawndirection) {
+          if (
+            !this.tileoccupied(x, y, boardState) &&
+            !this.tileoccupied(x, y - pawndirection, boardState)
+          ) {
             return true;
           }
         }
       }
-    }
-    if (type === PieceType.PEON) {
-      if (team === TeamType.OPPONENT) {
-        if (py === 1) {
-          if (px === x && y - py === 1) {
-            if (!this.tileoccupied(x, y, boardState)) {
-              return true;
-            }
-          } else if (px === x && y - py === 2) {
-            if (
-              !this.tileoccupied(x, y, boardState) &&
-              !this.tileoccupied(x, y - 1, boardState)
-            ) {
-              return true;
-            }
-          }
-        } else {
-          if (px === x && y - py === 1) {
-            return true;
-          }
+
+      // Movimiento normal del peón de una casilla hacia adelante
+      if (px === x && y - py === pawndirection) {
+        if (!this.tileoccupied(x, y, boardState)) {
+          return true;
         }
       }
     }
