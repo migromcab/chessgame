@@ -184,6 +184,12 @@ function Chessboard() {
         Math.ceil((e.clientY - chessboard.offsetTop - 800) / tileSize)
       );
 
+      const currentPiece = pieces.find(
+        (p) => p.AxisX === gridX && p.AxisY === gridY
+      );
+      const attackedPiece = pieces.find((p) => p.AxisX === x && p.AxisY === y);
+
+      console.log(currentPiece);
       setPieces((value) => {
         const pieces = value.map((p) => {
           if (p.AxisX === gridX && p.AxisY === gridY) {

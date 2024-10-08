@@ -18,7 +18,11 @@ export default class Referee {
     const piece = boardState.find(
       (p) => p.AxisX === x && p.AxisY === y && p.team !== team
     );
-    return true;
+    if (piece) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   validMove(
@@ -30,11 +34,11 @@ export default class Referee {
     team: TeamType,
     boardState: Piece[]
   ) {
-    console.log("I am the referee");
+    /*  console.log("I am the referee");
     console.log(`Previous location:(${px},${py})`);
     console.log(`Current  location:(${x},${y})`);
     console.log(` Type:(${type})`);
-    console.log(` Team:(${team})`);
+    console.log(` Team:(${team})`);*/
     if (type === PieceType.PEON) {
       const specialrow = team === TeamType.OUR ? 6 : 1;
       const pawndirection = team === TeamType.OUR ? -1 : 1;
@@ -61,10 +65,10 @@ export default class Referee {
       else if (x - px === -1 && y - py === pawndirection) {
         console.log("ATTACK 1!!!");
         if (this.tileoccupied(x, y, boardState, team)) {
-          console.log("the enemy is invading, ATTACK!!");
+          return true;
         }
       } else if (x - px === 1 && y - py === pawndirection) {
-        console.log("ATTACK 2!!!");
+        return true;
       }
     }
 
